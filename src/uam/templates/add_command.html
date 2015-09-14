@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load django_select2_tags %}
+<body>
+{% block content %}
+  <div class="row">
+    <div class="col-sm-6 col-md-5 col-sm-offset-3">
+    {% if title %}
+      <h3 class='text-align-center'>{{title }}</h3>
+    {%endif %}
+      <form id="groupform" method='POST' action =''> {%csrf_token %}
+        {{form}}
+        <button type='submit' class='btn btn-primary' value="submit">Save</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+</body>
