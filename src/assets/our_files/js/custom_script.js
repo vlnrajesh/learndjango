@@ -1,19 +1,40 @@
+
+
 $(document).ready(function(){
     $("#id_cmd_aliases").select2();
-  });
+});
+
+
 function cloneMore(selector, type) {
-    var newElement = $(selector).clone(true);
+    
+    //var newElement = $().clone(true);
+    var Element = $("#" + selector).children("ul").last();
+    if (Element.size() <= 0 ) {
+        return; // No element to clone.
+    }
+    
+    var newElement = Element.clone(true);
+    
     var total = $('#id_' + type + '-TOTAL_FORMS').val();
+    total++;
+    
+    // TODO Correct the id, label increment here. So the cloned element will get unique 
+    // id and labels. Other Total Form update is correct actually, so no changes required.
     newElement.find(':input').each(function() {
         var name = $(this).attr('name').replace('-' + (total-1) + '-','-' + total + '-');
         var id = 'id_' + name;
         $(this).attr({'name': name, 'id': id}).val('').removeAttr('checked');
     });
+    
     newElement.find('label').each(function() {
         var newFor = $(this).attr('for').replace('-' + (total-1) + '-','-' + total + '-');
         $(this).attr('for', newFor);
     });
-    total++;
+    
+    
     $('#id_' + type + '-TOTAL_FORMS').val(total);
-    $(selector).after(newElement);
+    
+    $("#" + selector).children("ul").after(newElement)
+    
+    //$(selector).after(newElement);
 }
