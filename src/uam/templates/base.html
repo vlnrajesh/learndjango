@@ -17,8 +17,7 @@
   <body>
     {% include 'navbar.html' %}
       <div class="container-fluid">
-    {%block content %}
-    {% endblock %}
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -33,5 +32,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
     <!-- Custom Scripts -->
     <script src="{% static 'js/custom_script.js' %}"></script>
+    
+    {%block content %}
+    {% endblock %}
+    
   </body>
 </html>

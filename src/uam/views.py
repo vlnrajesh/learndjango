@@ -35,7 +35,7 @@ def add_cmdalias(request):
 def test_group(request):
 	title = "Add New Group"
 	group_add_form = groupAddForm(request.POST or None)
-	cmdformset = CommandAliasFormSet(request.POST or None)
+	cmdformset = CommandAliasFormSet(request.POST or None, prefix="AddCmdAliasForm")
 	context = {
 		'title' : title,
 		'form' : group_add_form,

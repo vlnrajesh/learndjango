@@ -53,7 +53,7 @@ class AddCmdAliasForm(forms.Form):
       raise forms.ValidationError(_cmd_alias+" already exists")
     return cleaned_data
 
-CommandAliasFormSet= formset_factory(AddCmdAliasForm,extra=2)
+CommandAliasFormSet = formset_factory(AddCmdAliasForm,extra=1)
 
 class groupAddForm(forms.Form):
   """
@@ -63,7 +63,12 @@ class groupAddForm(forms.Form):
   gname = forms.CharField(label='Group Name',max_length=255)
   display_name = forms.CharField(label='Display Name', max_length=255)
   mail_pdl = forms.EmailField(label='Group PDL')
-  cmd_aliases = forms.ModelMultipleChoiceField(widget=Select2MultipleWidget(select2_options={'width':'resolve'}),label='Command Alias', queryset=CmdAliasModel.objects.filter(gid__isnull=True))
+
+  cmd_aliases = forms.ModelMultipleChoiceField(
+      widget=Select2MultipleWidget(select2_options={'width':'resolve'}),
+      label='Command Alias',
+      queryset=CmdAliasModel.objects.filter(gid__isnull=True)
+  )
   
   #Group Name field level validations
   def clean_grpname(self):
