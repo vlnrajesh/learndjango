@@ -13,21 +13,25 @@
         
         {{form|crispy}}
               
-        {{ cmdformset.management_form }}
-        <ul>
-            {% for formset in cmdformset.forms %}
-            {{ formset|crispy }}         
-            {% endfor %}
-        </ul>
-        
-        <input type="button" value="Add More" id="add_more">
-        
-        <script>
-          $("#add_more").click(function(){
-              cloneMore($(this).parent().attr("id"),'AddCmdAliasForm');
-           });
-        </script>
-        
+        <div id="inline-formset" style="margin: 31px;">
+            {{ cmdformset.management_form }}
+            <span id="inline-formset-span">
+                <ul>
+                    {% for formset in cmdformset.forms %}
+                    {{ formset|crispy }}         
+                    {% endfor %}
+                </ul>
+            </span>
+
+            <input type="button" value="Add More Commands" id="add_more">
+
+            <script>
+              $("#add_more").click(function(){
+                  cloneMore("inline-formset-span",'AddCmdAliasForm');
+               });
+            </script>
+
+        </div>
         <button type='submit' class='btn btn-primary' value="submit">Save</button>
       </form>
     </div>
